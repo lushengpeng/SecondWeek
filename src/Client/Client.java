@@ -11,28 +11,23 @@ import java.net.SocketAddress;
 import java.net.UnknownHostException;
 
 public class Client {
-	//private static final String IP = null;
 	public static void main(String[] args) throws IOException{
 		
-		String fileDir = "";
-		String fileName = "2.png";
-	   Socket socket = null; 
-	   int length = 0;
-	   int sum = 0;//Client的socket
+	   String fileDir = "";    		//传输图片目录
+	   String fileName = "2.png";	//传输文件的名称
+	   Socket socket = null; 		//Client的socket
+	   int length = 0;				
+	   int sum = 0;
 	   DataOutputStream dos = null;
 	   FileInputStream fis =null;
 	   System.out.println("===========");
 	   
 	   socket = getConnection("127.0.0.1",12350);//建立连接
-	   //System.out.println(socket.getInetAddress().toString());
 
-
-	   //fileName = args[0];
-//	   File file= new File(fileDir+fileName);//获取文件路径
-	   File file = new File("2.png");
+	   File file= new File(fileDir+fileName);//获取文件路径
 	   try{
 		   try{
-			   dos= new DataOutputStream(socket.getOutputStream());
+			   dos= new DataOutputStream(socket.getOutputStream()); 
 			   fis = new FileInputStream(file);
 			   byte[] sendByte = new byte[1024];
 			   while((length = fis.read(sendByte, 0, sendByte.length))>0){
@@ -55,13 +50,9 @@ public class Client {
 	   }catch(Exception e){
 		   e.printStackTrace();
 	   }
-	  
-	   
-	   
-	   
-
 		
 	}
+	
 	public static boolean isRight(String[] args){
 		if(args.length<3)
 		{
